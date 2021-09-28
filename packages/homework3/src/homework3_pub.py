@@ -18,7 +18,7 @@ def publish_value():
         rospy.init_node('homework3')
         rate = rospy.Rate(1)
         while not rospy.is_shutdown():
-            pub.publish(randint(-100,100))
+            pub.publish(random.randint(0,100))
             rate.sleep()
 
 if __name__ == '__main__':
