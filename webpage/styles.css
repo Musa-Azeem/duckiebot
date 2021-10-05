@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-image: url("duck_background.png")
+}
+
+
+h1{
+    text-align:center;
+    padding: 40px;
+    margin-bottom:0px;
+    font-size: 45px;
+    
+}
+h2{
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    text-align:center;
+}
+.main{
+    margin: 150px;
+    margin-top: 40px;
+    background:beige;
+    padding: 20px;
+    text-align: center;
+}
+
+.content > p {
+    font-size: 20px;
+    text-justify: left;
+    padding: 15px;
+}
+
+.thumbnail{
+    border: 5px solid black;
+}
