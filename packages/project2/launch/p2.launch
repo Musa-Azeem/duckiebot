@@ -1,0 +1,5 @@
+<launch>
+   <group ns="project2">
+      <node pkg="project2" name="p2_circle" type="p2_circle.py" output="screen" />
+   </group>
+</launch>
