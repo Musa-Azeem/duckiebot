@@ -9,7 +9,7 @@ def publish_value():
     rospy.init_node('p2_circle')
     circle_cmd = Twist2DStamped()
     circle_cmd.v = .2
-    circle_cmd.omega = .3631
+    circle_cmd.omega = 7.26
     rate = rospy.Rate(60)
     while not rospy.is_shutdown():
         pub.publish(circle_cmd)
