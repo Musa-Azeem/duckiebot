@@ -10,8 +10,8 @@ class circle:
     def __init__(self):
         #values
         self.wheel_length = .1016   #l
-        self.circle_radius = .5     #R
-        self.vr = .4                #change to desired speed
+        self.circle_radius = .525     #R
+        self.vr = .64                #change to desired speed
         #vl = (2R-l)/(2R+l) * vr    since vr > vl, duckiebot will move in a counterclockwise rotation
         self.vl = ((2*self.circle_radius-self.wheel_length)/(2*self.circle_radius+self.wheel_length))*self.vr
 
@@ -23,7 +23,7 @@ class circle:
         self.stop_cmd = Twist2DStamped()
         self.stop_cmd.v = 0
         self.stop_cmd.omega = 0
-        self.sleep_dur = rospy.Duration(26, 0) #change to time needed for perfect circle
+        self.sleep_dur = rospy.Duration(8, 0) #change to time needed for perfect circle
 
         
         rospy.on_shutdown(self.stop)   #set function to be called if node is shutdown
