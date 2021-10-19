@@ -8,24 +8,14 @@ class circle:
     Class to hold functions to move robot in circle
     """
     def __init__(self):
-        #values
-        self.wheel_length = .1016   #l
-        self.circle_radius = .5     #R
-        self.vr = .4                #change to desired speed
-        #vl = (2R-l)/(2R+l) * vr    since vr > vl, duckiebot will move in a counterclockwise rotation
-        self.vl = ((2*self.circle_radius-self.wheel_length)/(2*self.circle_radius+self.wheel_length))*self.vr
-
-        #ros elements
         self.pub = rospy.Publisher("/duck28/car_cmd_switch_node/cmd", Twist2DStamped, queue_size = 10)
         self.circle_cmd = Twist2DStamped()
-        self.circle_cmd.v = (self.vr+self.vl)/2     #v=(vr+vl)/2
-        self.circle_cmd.omega = (self.vr-self.vl)/self.wheel_length #omega=(vr-vl)/l positive for counterclockwise
+        self.circle_cmd.v = .4       #change these values to what we had
+        self.circle_cmd.omega = 1.375   #change these values to what we had
         self.stop_cmd = Twist2DStamped()
         self.stop_cmd.v = 0
         self.stop_cmd.omega = 0
-        self.sleep_dur = rospy.Duration(26, 0) #change to time needed for perfect circle
-
-        
+        self.sleep_dur = rospy.Duration(10.5, 0) #change to time needed for perfect circle
         rospy.on_shutdown(self.stop)   #set function to be called if node is shutdown
     def run(self):
         """
