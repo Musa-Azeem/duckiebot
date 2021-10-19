@@ -1,0 +1,5 @@
+<launch>
+   <group ns="project2">
+      <node pkg="project2" name="p2_pent" type="p2_pent.py" output="screen" />
+   </group>
+</launch>

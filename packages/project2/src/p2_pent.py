@@ -20,7 +20,7 @@ class Pent:
         self.side_cmd.v = self.side_v
         self.side_cmd.omega = 0     #no rotation during sides
 
-        self.turn_vr = .4           #velocity of right wheel when turning (vl = -vr) vr is positive so sounterclockwise rotation
+        self.turn_vr = .1           #velocity of right wheel when turning (vl = -vr) vr is positive so sounterclockwise rotation
         self.turn_dur = rospy.Duration((self.angle*self.wheel_length)/(2*self.turn_vr)) #t=(theta*l)/(vr-vl)
         self.turn_cmd = Twist2DStamped()
         self.turn_cmd.v = 0     #(vr+vl)/2 = 0
@@ -30,7 +30,6 @@ class Pent:
         self.stop_cmd.v = 0
         self.stop_cmd.omega = 0
         rospy.on_shutdown(self.stop)   #set function to be called if node is shutdown
-
     def run(self):
         """
         function to make duckiebot travel in a pentagon
@@ -57,3 +56,11 @@ class Pent:
         rospy.loginfo("shutting down")
         self.pub.publish(self.stop_cmd)
 
+
+if __name__ == '__main__':
+    rospy.init_node('p2_pent')
+    go_pent = Pent()
+    try:
+        go_pent.run()
+    except rospy.ROSInterruptException:
+        rospy.loginfo("could not launch p2_pent.p")
