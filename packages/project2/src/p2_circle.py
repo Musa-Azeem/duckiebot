@@ -15,7 +15,7 @@ class circle:
         self.stop_cmd = Twist2DStamped()
         self.stop_cmd.v = 0
         self.stop_cmd.omega = 0
-        self.sleep_dur = rospy.Duration(10, 0) #change to time needed for perfect circle
+        self.sleep_dur = rospy.Duration(26, 0) #change to time needed for perfect circle
         rospy.on_shutdown(self.stop)   #set function to be called if node is shutdown
     def run(self):
         """
