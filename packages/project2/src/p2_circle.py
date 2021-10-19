@@ -11,11 +11,11 @@ class circle:
         self.pub = rospy.Publisher("/duck28/car_cmd_switch_node/cmd", Twist2DStamped, queue_size = 10)
         self.circle_cmd = Twist2DStamped()
         self.circle_cmd.v = .4       #change these values to what we had
-        self.circle_cmd.omega = 2    #change these values to what we had
+        self.circle_cmd.omega = 1.375   #change these values to what we had
         self.stop_cmd = Twist2DStamped()
         self.stop_cmd.v = 0
         self.stop_cmd.omega = 0
-        self.sleep_dur = rospy.Duration(26, 0) #change to time needed for perfect circle
+        self.sleep_dur = rospy.Duration(10.5, 0) #change to time needed for perfect circle
         rospy.on_shutdown(self.stop)   #set function to be called if node is shutdown
     def run(self):
         """
