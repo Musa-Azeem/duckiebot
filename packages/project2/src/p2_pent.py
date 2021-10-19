@@ -14,14 +14,14 @@ class Pent:
         self.side = .2              #d
         self.angle = .6*3.14259     #theta
 
-        self.side_v = .4            #side_v = vr = vl velocity for both wheel during sides      
-        self.side_dur = rospy.Duration(self.side/self.side_v)   #t=d/v
+        self.side_v = .3            #side_v = vr = vl velocity for both wheel during sides      
+        self.side_dur = rospy.Duration(self.side/self.side_v+0.16,0)   #t=d/v
         self.side_cmd = Twist2DStamped()
         self.side_cmd.v = self.side_v
         self.side_cmd.omega = 0     #no rotation during sides
 
-        self.turn_vr = .1           #velocity of right wheel when turning (vl = -vr) vr is positive so sounterclockwise rotation
-        self.turn_dur = rospy.Duration((self.angle*self.wheel_length)/(2*self.turn_vr)) #t=(theta*l)/(vr-vl)
+        self.turn_vr = .3           #velocity of right wheel when turning (vl = -vr) vr is positive so sounterclockwise rotation
+        self.turn_dur = rospy.Duration((self.angle*self.wheel_length)/(2*self.turn_vr)+0.14,0) #t=(theta*l)/(vr-vl)
         self.turn_cmd = Twist2DStamped()
         self.turn_cmd.v = 0     #(vr+vl)/2 = 0
         self.turn_cmd.omega = (2*self.turn_vr)/self.wheel_length #omega = (vr-vl)/l positive for counterclockwise rotation
