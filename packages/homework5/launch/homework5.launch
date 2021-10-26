@@ -1,10 +1,11 @@
 <launch>
-  <!--<remap from="/homework2/total" to="/total_converted" />-->
   <param name="unit" value="meter" />
   <node pkg="homework5" name="homework5" type="homework5.py"/>   
 
   <node pkg="homework3" name="homework3_pub" type="homework3_pub.py"/>
-  <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen" />
+  <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen"> 
+    <remap from="/homework2/total" to="/total_converted" />
+  </node>
   
   <group ns="homework2">
     <node pkg="homework2" name="homework2" type="homework2.py"/>
