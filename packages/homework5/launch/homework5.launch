@@ -1,11 +1,15 @@
 <launch>
-  <param name="unit" value="meter" />
-  <node pkg="homework5" name="homework5" type="homework5.py"/>   
+  <group>
+    <param name="unit" value="smoot" />
+    <node pkg="homework5" name="homework5" type="homework5.py" output="screen"/>   
+  </group>
 
-  <node pkg="homework3" name="homework3_pub" type="homework3_pub.py"/>
-  <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen"> 
-    <remap from="/homework2/total" to="/total_converted" />
-  </node>
+  <group>
+    <node pkg="homework3" name="homework3_pub" type="homework3_pub.py"/>
+    <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen"> 
+      <remap from="/homework2/total" to="/total_converted" />
+    </node>
+  </group>
   
   <group ns="homework2">
     <node pkg="homework2" name="homework2" type="homework2.py"/>
