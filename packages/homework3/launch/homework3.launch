@@ -1,7 +1,7 @@
 <launch>
-  <group ns="homework3">
-    <node pkg="homework3" name="homework3_pub" type="homework3_pub.py" />
-    <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen" />
+  <node pkg="homework3" name="homework3_pub" type="homework3_pub.py" />
+  <node pkg="homework3" name="homework3_sub" type="homework3_sub.py" output="screen" />
+  <group ns="homework2">
     <node pkg="homework2" name="homework2" type="homework2.py" />
   </group>
 
