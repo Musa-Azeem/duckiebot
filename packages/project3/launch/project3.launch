@@ -1,0 +1,6 @@
+<launch>
+	<group ns="project3">
+		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen" />
+		<node pkg="project3" name="lane_pose_pub" type="lane_pose_pub.py" output="screen" />
+	</group>
+</launch>
