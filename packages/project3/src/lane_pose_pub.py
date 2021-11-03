@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+from random import randint
 from duckietown_msgs.msg import LanePose
 from std_msgs.msg import Float32
 
@@ -9,8 +10,8 @@ def publish():
     dur = rospy.Duration(2,0);
     while True:
         pos = LanePose()
-        pos.d = 2
-        pos.phi = 2
+        pos.d = randint(-2,2)
+        pos.phi = randint(-2,2)
         pos.in_lane = True
         pub.publish(pos)
         rospy.sleep(dur)
