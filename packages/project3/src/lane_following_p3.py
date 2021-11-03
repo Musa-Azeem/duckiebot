@@ -25,8 +25,8 @@ class lane_follow:
         self.sub_cam = rospy.Subscriber("lane_pose", LanePose, self.callback, queue_size=10)
         rospy.on_shutdown(self.stop)
 
-        self.v = .3     #constant velocity during lane following
-        self.kp = 1     #propertional gain
+        self.v = 1.5     #constant velocity during lane following
+        self.kp = 1.3     #propertional gain
         self.kd = 1     #derivative gain
 
         self.last_d_err = 0
