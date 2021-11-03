@@ -1,2 +1,2 @@
 # LIST YOUR APT PACKAGES HERE
-tmux
+#tmux
