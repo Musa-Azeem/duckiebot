@@ -26,7 +26,7 @@ class lane_follow:
         rospy.on_shutdown(self.stop)
 
         #self.v = 1.5     #constant velocity during lane following
-	self.v = int(rospy.get_param('v','.3'))
+	self.v = int(rospy.get_param('v','.3')) #LOOK HERE
         #self.kp = 1.3     #propertional gain
         #self.kd = 1     #derivative gain
 	self.kp = int(rospy.get_param('kp', '1'))
