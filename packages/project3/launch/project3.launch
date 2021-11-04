@@ -37,6 +37,9 @@
 		<remap from="cmd" to="/duck28/car_cmd_switch_node/cmd" />
 		<remap from="lane_pose" to="/duck28/lane_filter_node/lane_pose" />
 		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen"/>
+		<param name="v" value=".3" />
+		<param name="kp" value="1" />
+		<param name="kd" value="1" />
 	</group>
      </group>
 </launch>

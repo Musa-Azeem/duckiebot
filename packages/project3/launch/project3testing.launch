@@ -1,5 +1,8 @@
 <launch>
 	<group ns="project3">
+		<param name="v" value=".3" />
+		<param name="kp" value="1" />
+		<param name="kd" value="1" />
 		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen" />
 		<node pkg="project3" name="lane_pose_pub" type="lane_pose_pub.py" output="screen" />
 	</group>
