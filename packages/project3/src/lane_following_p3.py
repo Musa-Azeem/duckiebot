@@ -79,6 +79,10 @@ class lane_follow:
             Sets v and omega of next action message and publishes to cmd topic
             Updates last time to current time for next callback
         """
+        self.v = int(rospy.get_param('v', '0.5'))
+        self.kp = int(rospy.get_param('kp', '1'))
+        self.kd = int(rospy.get_param('kd', '1'))
+
         rospy.loginfo("in callback")
          #find delta time
         curr_time = rospy.Time.now().to_sec()
@@ -101,6 +105,7 @@ class lane_follow:
 
         cmd_msg = Twist2DStamped()
 #        cmd_msg.header = pose_data.header
+	rospy.loginfo(str(self.v))
         cmd_msg.v = self.v
         cmd_msg.omega = omega
 
