@@ -79,8 +79,8 @@ class lane_follow:
             Sets v and omega of next action message and publishes to cmd topic
             Updates last time to current time for next callback
         """
-	rospy.loginfo("in callback")
-        #find delta time
+        rospy.loginfo("in callback")
+         #find delta time
         curr_time = rospy.Time.now().to_sec()
         if self.last_time is not None:
             dt = curr_time - self.last_time
