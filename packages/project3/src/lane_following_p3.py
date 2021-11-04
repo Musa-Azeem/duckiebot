@@ -25,13 +25,18 @@ class lane_follow:
         self.sub_cam = rospy.Subscriber("lane_pose", LanePose, self.callback, queue_size=10)
         rospy.on_shutdown(self.stop)
 
-        self.v = 1.5     #constant velocity during lane following
-        self.kp = 1.3     #propertional gain
-        self.kd = 1     #derivative gain
+        #self.v = 1.5     #constant velocity during lane following
+	self.v = rospy.get_param('unit',.3)
+        #self.kp = 1.3     #propertional gain
+        #self.kd = 1     #derivative gain
+	self.kp = rospy.get_param('kp', 1)
+	self.kp = rospy.get_param('kd', 1)
+
 
         self.last_d_err = 0
         self.last_phi_err = 0
         self.last_time = None
+	rospy.loginfo('in __init__')
 
     def calc_der(self, e, last_e, dt):
         """
@@ -74,6 +79,7 @@ class lane_follow:
             Sets v and omega of next action message and publishes to cmd topic
             Updates last time to current time for next callback
         """
+	rospy.loginfo('in callback')
         #find delta time
         curr_time = rospy.Time.now().to_sec()
         if self.last_time is not None:
@@ -85,8 +91,8 @@ class lane_follow:
         d_err = pos_data.d
         phi_err = pos_data.phi
 
-        #rospy.loginfo("d: "+str(d_err))
-        #rospy.loginfo("phi: "+str(phi_err))
+        rospy.loginfo("d: "+str(d_err))
+        rospy.loginfo("phi: "+str(phi_err))
 
         #TODO threshold error if too large
         
@@ -100,6 +106,7 @@ class lane_follow:
 
         #publish command
         self.pub_cmd.publish(cmd_msg)
+	rospy.loginfo('published: '+str(omega))
 
         #update last_time
         self.last_time = curr_time
