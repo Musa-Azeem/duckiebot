@@ -26,17 +26,17 @@ class lane_follow:
         rospy.on_shutdown(self.stop)
 
         #self.v = 1.5     #constant velocity during lane following
-	self.v = int(rospy.get_param('v','.3')) #LOOK HERE
+        self.v = int(rospy.get_param('v', '0.3'))
         #self.kp = 1.3     #propertional gain
         #self.kd = 1     #derivative gain
-	self.kp = int(rospy.get_param('kp', '1'))
-	self.kd = int(rospy.get_param('kd', '1'))
+        self.kp = int(rospy.get_param('kp', '1'))
+        self.kd = int(rospy.get_param('kd', '1'))
 
 
         self.last_d_err = 0
         self.last_phi_err = 0
         self.last_time = None
-	rospy.loginfo('in __init__')
+        rospy.loginfo('in __init__')
 
     def calc_der(self, e, last_e, dt):
         """
@@ -79,8 +79,8 @@ class lane_follow:
             Sets v and omega of next action message and publishes to cmd topic
             Updates last time to current time for next callback
         """
-	rospy.loginfo('in callback')
-        #find delta time
+        rospy.loginfo("in callback")
+         #find delta time
         curr_time = rospy.Time.now().to_sec()
         if self.last_time is not None:
             dt = curr_time - self.last_time
