@@ -91,8 +91,8 @@ class lane_follow:
         d_err = pos_data.d
         phi_err = pos_data.phi
 
-        rospy.loginfo("d: "+str(d_err))
-        rospy.loginfo("phi: "+str(phi_err))
+	rospy.loginfo("d: "+str(d_err))
+	rospy.loginfo("phi: "+str(phi_err))
 
         #TODO threshold error if too large
         
@@ -127,6 +127,6 @@ if __name__ == '__main__':
         lane_follow()
         rospy.spin()
     except ROSInterruptException:
-        rospy.loginfo("ros interrupt exception") 
+	rospy.loginfo("ros interrupt exception") 
 
 
