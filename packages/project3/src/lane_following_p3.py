@@ -99,17 +99,25 @@ class lane_follow:
         rospy.loginfo("d: "+str(d_err))
         rospy.loginfo("phi: "+str(phi_err))
 
-        #TODO threshold error if too large
         
         #get omega from controller
         omega = self.calc_next_action(d_err, phi_err, dt)
 
+        #TODO threshold error if too large
+        if omega > 4:
+            rospy.loginfo("thresholded to 4")
+            omega=4
+        elif omega < -4:
+            rospy.loginfo("thresholded to -4")
+            omega=-4
         cmd_msg = Twist2DStamped()
-#        cmd_msg.header = pose_data.header
-	rospy.loginfo(str(self.v))
+        rospy.loginfo(str(self.v))
         cmd_msg.v = self.v
         cmd_msg.omega = omega
 
+        if abs(omega) > 4:
+            cmd_msg.v *= .25
+        
         #publish command
         self.pub_cmd.publish(cmd_msg)
         rospy.loginfo('published: '+str(omega))
