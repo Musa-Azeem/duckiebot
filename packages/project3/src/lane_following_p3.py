@@ -76,7 +76,8 @@ class lane_follow:
             Gets error d and phi values from lane_pose
             Thresholds error if too large - stops node if too large
             Calls controller function to get next robot action
-            Sets v and omega of next action message and publishes to cmd topic
+            Sett
+ v and omega of next action message and publishes to cmd topic
             Updates last time to current time for next callback
         """
         self.v = int(rospy.get_param('v', '0.5'))
