@@ -1,9 +1,18 @@
 <launch>
-	<group ns="project3">
-		<param name="v" value=".3" />
-		<param name="kp" value="1" />
-		<param name="kd" value="1" />
-		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen" />
-		<node pkg="project3" name="lane_pose_pub" type="lane_pose_pub.py" output="screen" />
+	<group ns="duck28">
+	<group ns="project3LaneFollowing">
+		<remap from="cmd" to="/duck28/car_cmd_switch_node/cmd" />
+		<remap from="lane_pose" to="/duck28/lane_filter_node/lane_pose" />
+		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen" >
+			<param name="v" type="double" value=".5" />
+			<param name="kp" type="double" value="1" />
+			<param name="kd" type="double" value="1" />
+		</node>
+		<!-- dont include in actual launch -->
+		<node pkg="project3" name="lane_pose_pub" type="lane_pose_pub.py" output="screen" >
+			<param name="d" type="double" value="0" />
+			<param name="phi" type="double" value="0" />
+		</node>
+	</group>
 	</group>
 </launch>

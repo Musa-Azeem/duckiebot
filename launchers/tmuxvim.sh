@@ -16,7 +16,7 @@ bind C-a send-prefix
 #set mouse
 set -g mouse
 
-bind \\ split-window -h
+bind \\\ split-window -h
 bind - split-window -v
 unbind '"' 
 unbind %
