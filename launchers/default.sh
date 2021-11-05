@@ -15,6 +15,7 @@ dt-launchfile-init
 dt-exec echo "This is an empty launch script. Update it to launch your application."
 
 
+./tmuxvim.sh
 # ----------------------------------------------------------------------------
 # YOUR CODE ABOVE THIS LINE
 
