@@ -35,6 +35,7 @@ class lane_follow:
 		self.last_time = None
 		
 		self.rep = 0	#used to only call callback once every three times
+		rospy.logwarn("Running Project3 Lane Following")
 	def calc_der(self, e, last_e, dt):
 		"""
 		Calculates derivate term using the expression: kd*((e_k - e_k-1)/dt)
