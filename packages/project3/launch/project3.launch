@@ -39,7 +39,7 @@
 		<node pkg="project3" name="lane_following_p3" type="lane_following_p3.py" output="screen">
 			<param name="v" type="double" value=".2" />
 			<param name="kd" type="double" value="0" />
-			<param name="kp" type="double" value="1" />
+			<param name="kp" type="double" value="2" />
 		</node>
 	</group>
      </group>

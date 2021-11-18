@@ -42,10 +42,10 @@ class lane_follow:
 		offset = rospy.get_param('~offset', 0)	
 		#find delta time
 		curr_time = rospy.Time.now().to_sec()
-		if self.last_time is not None:
-			dt = curr_time - self.last_time
-		else:
-			dt = curr_time
+		#if self.last_time is not None:
+		#	dt = curr_time - self.last_time
+		#else:
+		#	dt = curr_time
         
 		#get errors from camera node
 		d_err = pos_data.d
@@ -55,8 +55,10 @@ class lane_follow:
 		rospy.loginfo("phi: "+str(phi_err))
 
 		#get omega from controller
-		omega = self.calc_next_action(d_err, phi_err, dt)
-	
+		#omega = self.calc_next_action(d_err, phi_err, dt)
+		
+		omega = 2*(kp*d_err + kp*phi_err)
+		
 		#threshold error if too large
 		if omega > 4:
 			rospy.loginfo("thresholded to 4")
@@ -67,7 +69,7 @@ class lane_follow:
 		
 		cmd_msg = Twist2DStamped()
 		cmd_msg.v = self.v
-		cmd_msg.omega = -.5*omega + offset
+		cmd_msg.omega = omega + offset
 	
 		#reduce velocity by .25 if omega is high
 		#if abs(omega) > 4:
@@ -79,7 +81,7 @@ class lane_follow:
 		rospy.loginfo('published omega: '+str(omega))
 	
 		#update last_time
-		self.last_time = curr_time
+		#self.last_time = curr_time
 	
 	def stop(self):
 		rospy.loginfo("stopping duckiebot")
