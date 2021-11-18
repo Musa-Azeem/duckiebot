@@ -57,7 +57,7 @@ class lane_follow:
 		#get omega from controller
 		#omega = self.calc_next_action(d_err, phi_err, dt)
 		
-		omega = 2*(kp*d_err + kp*phi_err)
+		omega = 2*(self.kp*d_err + self.kp*phi_err)
 		
 		#threshold error if too large
 		if omega > 4:
