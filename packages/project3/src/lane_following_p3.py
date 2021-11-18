@@ -34,13 +34,6 @@ class lane_follow:
 		return omega
 
 	def callback(self, pos_data):
-		if self.rep != 0:	#if not third rep
-			self.rep -= 1 	#increment counter
-			rospy.loginfo("skipped callback")
-			return		#return
-		else:			#if it is the third rep
-			self.rep = 3	#set counter back to 0
-        
 		rospy.logwarn("Running Project3 Lane Following")
 	
 		self.v = rospy.get_param('~v', '0.3')
