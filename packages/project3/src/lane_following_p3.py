@@ -67,7 +67,7 @@ class lane_follow:
 		
 		cmd_msg = Twist2DStamped()
 		cmd_msg.v = self.v
-		cmd_msg.omega = omega
+		cmd_msg.omega = .5*omega
 	
 		#reduce velocity by .25 if omega is high
 		#if abs(omega) > 4:
