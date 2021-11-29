@@ -2,7 +2,7 @@
 
 import rospy
 from duckietown_msgs.msg import LanePose
-from duckietwon_msgs.msg import WheelsCmdStamped
+from duckietown_msgs.msg import WheelsCmdStamped
 
 class lane_follow:
 	def __init__(self):
