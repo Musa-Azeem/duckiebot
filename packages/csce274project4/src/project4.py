@@ -19,6 +19,7 @@ class lane_follow:
 		msg.vel_right = self.vel
 		self.pub.publish(msg)
 	def callback(self, data):
+		self.kp = rospy.get_param("/duck28/project4/p",1)
 		rospy.loginfo("kp: "+self.kp)
 		phi = data.phi
 		msg = WheelsCmdStamped()
