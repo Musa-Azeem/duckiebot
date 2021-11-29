@@ -8,7 +8,7 @@ class lane_follow:
  		#self.pub = rospy.Publisher("cmd",  
  		self.vel = rospy.get_param("~project4/vel_max", '.5')
 		self.vel_min = rospy.get_param("~project4/vel_min", 0)
-	def callback(self, pos_data):
+#	def callback(self, pos_data):
 	        
 	def stop(self):
 		rospy.loginfo("stopping duckiebot")
