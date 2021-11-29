@@ -23,6 +23,7 @@ class lane_follow:
 		phi = data.phi
 		msg = WheelsCmdStamped()
 		if phi < 0:
+
 			msg.vel_right = self.vel
 			msg.vel_left = self.vel + phi*self.kp
 		elif phi > 0:
@@ -32,10 +33,10 @@ class lane_follow:
 			msg.vel_left = self.vel
 			msg.vel_right = self.vel
 
-		if msg.vel_right < .25:
-			msg.vel_right = .25
-		if msg.vel_left < .25:
-			msg.vel_left = .25
+		if msg.vel_right < .15:
+			msg.vel_right = .15
+		if msg.vel_left < .15:
+			msg.vel_left = .15
 
 		rospy.logwarn("Data: duck28, vel_min:{}, vel_max:{}, vel_left:{}, vel_right:{}, p: {}, i: 0, d: 0".format(self.vel_min, self.vel, msg.vel_left, msg.vel_right, self.kp))
 		self.pub.publish(msg)
