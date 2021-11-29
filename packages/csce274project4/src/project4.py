@@ -12,7 +12,7 @@ class lane_follow:
 		self.vel_min = rospy.get_param("project4/vel_min", '0')
 		self.kp = rospy.get_param("project4/p",1)
 		rospy.on_shutdown(self.stop)
-		init_pub()
+		self.init_pub()
 	def init_pub(self):
 		msg = WheelsCmdStamped()
 		msg.vel_left = self.vel
