@@ -12,7 +12,6 @@ class lane_follow:
 		self.vel_min = rospy.get_param("/duck28/project4/vel_min", '0')
 		self.kp = rospy.get_param("/duck28/project4/p",1)
 		rospy.on_shutdown(self.stop)
-	def run(self):
 		self.init_pub()
 	def init_pub(self):
 		msg = WheelsCmdStamped()
@@ -52,8 +51,7 @@ class lane_follow:
 if __name__ == '__main__':
 	try:
 		rospy.init_node('csce274project4')
-		Follow = lane_follow()
-		Follow.run()
+		lane_follow()
 		rospy.spin()
 	except rospy.ROSInterruptException:
 		rospy.loginfo("ros interrupt exception") 
