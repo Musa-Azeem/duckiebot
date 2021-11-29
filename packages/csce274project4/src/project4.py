@@ -33,10 +33,10 @@ class lane_follow:
 			msg.vel_left = self.vel
 			msg.vel_right = self.vel
 
-		if msg.vel_right < .18:
-			msg.vel_right = .18
-		if msg.vel_left < .18:
-			msg.vel_left = .18
+		if msg.vel_right < .2:
+			msg.vel_right = .2
+		if msg.vel_left < .2:
+			msg.vel_left = .2
 
 		rospy.logwarn("Data: duck28, vel_min:{}, vel_max:{}, vel_left:{}, vel_right:{}, p: {}, i: 0, d: 0".format(self.vel_min, self.vel, msg.vel_left, msg.vel_right, self.kp))
 		self.pub.publish(msg)
