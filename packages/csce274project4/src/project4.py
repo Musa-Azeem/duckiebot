@@ -8,9 +8,9 @@ class lane_follow:
 	def __init__(self):
 		self.pub = rospy.Publisher("/duck28/wheels_driver_node/wheels_cmd", WheelsCmdStamped, queue_size=1)
 		self.sub = rospy.Subscriber("/duck28/lane_filter_node/lane_pose", LanePose, self.callback, queue_size=1)
-		self.vel = rospy.get_param("project4/vel_max", '.5')
-		self.vel_min = rospy.get_param("project4/vel_min", '0')
-		self.kp = rospy.get_param("project4/p",1)
+		self.vel = rospy.get_param("/duck28/project4/vel_max", '.5')
+		self.vel_min = rospy.get_param("/duck28/project4/vel_min", '0')
+		self.kp = rospy.get_param("/duck28/project4/p",1)
 		rospy.on_shutdown(self.stop)
 		self.init_pub()
 	def init_pub(self):
@@ -19,6 +19,7 @@ class lane_follow:
 		msg.vel_right = self.vel
 		self.pub.publish(msg)
 	def callback(self, data):
+		rospy.loginfo("kp: "+self.kp)
 		phi = data.phi
 		msg = WheelsCmdStamped()
 		if phi < 0:
