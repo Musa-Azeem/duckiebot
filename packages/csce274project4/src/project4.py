@@ -42,7 +42,7 @@ class lane_follow:
 
 if __name__ == '__main__':
 	try:
- 		rospy.init_node('csce274project4')
+		rospy.init_node('csce274project4')
 		lane_follow()
 		rospy.spin()
 	except ROSInterruptException:
