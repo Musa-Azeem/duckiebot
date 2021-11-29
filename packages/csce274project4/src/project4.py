@@ -21,6 +21,7 @@ class lane_follow:
 	def callback(self, data):
 		rospy.loginfo("kp: "+str(self.kp))
 		self.kp = rospy.get_param("/duck28/project4/p",1)
+		thresh = rospy.get_param("/duck28/project4/d",.15)
 		phi = data.phi
 		msg = WheelsCmdStamped()
 		if phi < 0:
@@ -33,10 +34,10 @@ class lane_follow:
 			msg.vel_left = self.vel
 			msg.vel_right = self.vel
 
-		if msg.vel_right < .2:
-			msg.vel_right = .2
-		if msg.vel_left < .2:
-			msg.vel_left = .2
+		if msg.vel_right < thresh:
+			msg.vel_right = thresh
+		if msg.vel_left < thresh:
+			msg.vel_left = thresh
 
 		rospy.logwarn("Data: duck28, vel_min:{}, vel_max:{}, vel_left:{}, vel_right:{}, p: {}, i: 0, d: 0".format(self.vel_min, self.vel, msg.vel_left, msg.vel_right, self.kp))
 		self.pub.publish(msg)
