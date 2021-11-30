@@ -6,8 +6,8 @@ from duckietown_msgs.msg import WheelsCmdStamped
 
 class lane_follow:
 	def __init__(self):
-		self.pub = rospy.Publisher("/duck28/wheels_driver_node/wheels_cmd", WheelsCmdStamped, queue_size=1)
-		self.sub = rospy.Subscriber("/duck28/lane_filter_node/lane_pose", LanePose, self.callback, queue_size=1)
+		self.pub = rospy.Publisher("/duck28/wheels_driver_node/wheels_cmd", WheelsCmdStamped, queue_size=10)
+		self.sub = rospy.Subscriber("/duck28/lane_filter_node/lane_pose", LanePose, self.callback, queue_size=10)
 		self.vel = rospy.get_param("/duck28/project4/vel_max", '.5')
 		self.vel_min = rospy.get_param("/duck28/project4/vel_min", '0')
 		self.kp = rospy.get_param("/duck28/project4/p",1)
@@ -21,7 +21,7 @@ class lane_follow:
 	def callback(self, data):
 		rospy.loginfo("kp: "+str(self.kp))
 		self.kp = rospy.get_param("/duck28/project4/p",1)
-		thresh = rospy.get_param("/duck28/project4/d",.15)
+		#thresh = rospy.get_param("/duck28/project4/d",.15)
 		phi = data.phi
 		msg = WheelsCmdStamped()
 		if phi < 0:
@@ -34,10 +34,10 @@ class lane_follow:
 			msg.vel_left = self.vel
 			msg.vel_right = self.vel
 
-		if msg.vel_right < thresh:
-			msg.vel_right = thresh
-		if msg.vel_left < thresh:
-			msg.vel_left = thresh
+		if msg.vel_right < 0.11:
+			msg.vel_right = 0.11
+		if msg.vel_left < 0.11:
+			msg.vel_left = 0.11
 
 		rospy.logwarn("Data: duck28, vel_min:{}, vel_max:{}, vel_left:{}, vel_right:{}, p: {}, i: 0, d: 0".format(self.vel_min, self.vel, msg.vel_left, msg.vel_right, self.kp))
 		self.pub.publish(msg)
